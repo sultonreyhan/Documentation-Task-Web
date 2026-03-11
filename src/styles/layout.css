@@ -1,0 +1,137 @@
+/* Global Layout Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+/* Main Workspace 4-Panel Layout */
+.workspace {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Activity Bar */
+.activity-bar {
+    width: 50px;
+    background-color: var(--bg-main);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    gap: var(--spacing-lg);
+    flex-shrink: 0;
+}
+
+/* Navigation Panel */
+.nav-panel {
+    width: 280px;
+    background-color: var(--bg-panel);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+/* Content Workspace */
+.content-workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-main);
+    min-width: 0;
+}
+
+/* Inspector Panel */
+.inspector-panel {
+    width: 300px;
+    background-color: var(--bg-panel);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+/* Header Sections */
+.nav-header,
+.content-header,
+.inspector-header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.nav-header h3,
+.inspector-header h3 {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+}
+
+.content-header h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+}
+
+/* Content Body */
+.content-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* Inspector Content */
+.inspector-content {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    overflow-y: auto;
+}
+
+/* Scrollbar Styling */
+.nav-panel::-webkit-scrollbar,
+.content-body::-webkit-scrollbar,
+.inspector-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.nav-panel::-webkit-scrollbar-track,
+.content-body::-webkit-scrollbar-track,
+.inspector-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.nav-panel::-webkit-scrollbar-thumb,
+.content-body::-webkit-scrollbar-thumb,
+.inspector-content::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.nav-panel::-webkit-scrollbar-thumb:hover,
+.content-body::-webkit-scrollbar-thumb:hover,
+.inspector-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}

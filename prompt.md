@@ -271,3 +271,29 @@ VS Code inspired layout
 flat modern SaaS UI  
 documentation editor blocks  
 minimal professional interface
+
+## new prompt 1.1
+Analyze the following HTML and JavaScript files.
+
+Goal:
+Refactor the project into a modular frontend architecture.
+
+Tasks:
+
+1. Identify all features and responsibilities in the code.
+2. Group them into logical modules such as:
+   - UI layout
+   - navigation system
+   - content rendering
+   - block rendering
+   - application state
+   - neural network logic
+   - training pipeline
+   - prediction system
+   - file upload handling
+3. Propose a clean project folder structure.
+4. Show which functions should move into which files.
+5. Refactor the existing code into modular files while preserving functionality.
+
+Important:
+Keep the architecture suitable for a local web app without frameworks (vanilla JS).
