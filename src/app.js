@@ -3,7 +3,7 @@
  * Initializes the UI and manages global state
  */
 
-import { UIController } from './src/ui/ui-controller.js';
+import { UIController } from './ui/ui-controller.js';
 
 // Global application instance
 let app = null;

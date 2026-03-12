@@ -25,8 +25,12 @@ export class ActivityBar {
             itemEl.className = 'activity-item';
             itemEl.setAttribute('title', item.title);
             itemEl.setAttribute('aria-label', item.title);
-            itemEl.innerHTML = item.icon;
             itemEl.dataset.action = item.action;
+
+            // Create icon element
+            if (item.icon) {
+                itemEl.innerHTML = item.icon;
+            }
 
             itemEl.addEventListener('click', () => {
                 this.setActive(itemEl);

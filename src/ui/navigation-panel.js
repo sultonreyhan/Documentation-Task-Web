@@ -26,8 +26,8 @@ export class NavigationPanel {
         const header = document.createElement('div');
         header.className = 'nav-header';
         header.innerHTML = `
-            <h3>Courses</h3>
-            <button title="Add course">
+            <h3>COURSES</h3>
+            <button class="nav-header-action" title="Add course">
                 <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
         `;

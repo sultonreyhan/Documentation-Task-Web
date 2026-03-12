@@ -297,3 +297,47 @@ Tasks:
 
 Important:
 Keep the architecture suitable for a local web app without frameworks (vanilla JS).
+
+## new prompt 1.2
+Update the UI layout and icon system for the left activity sidebar and section headers.
+
+1. Replace the icons in the left sidebar with image icons from the following paths in this exact order (top to bottom):
+
+* Book icon → `pics/book/book_1.png`
+* Search icon → `pics/search.png`
+* Favourite icon → `pics/star.png`
+* Settings icon → `pics/gear.png`
+
+Each icon should be displayed using an `<img>` element and scaled consistently (around 18–22px). Keep them centered inside the sidebar buttons.
+
+2. Modify the interaction styling of the sidebar icons so they visually match the selection behavior used in the **Courses menu**.
+
+Behavior rules:
+
+* Default state: icon color appears dark/black.
+* Hover state: background highlight appears similar to the Courses hover effect and the icon/text becomes **white**.
+* Active/selected state: background color matches the currently selected course item style and the icon remains **white**.
+
+Use smooth transitions for hover and active states so the interaction feels consistent with the Courses panel.
+
+3. Adjust the header layout for the following sections:
+
+* **COURSES**
+* **TASK CONTENT**
+
+Currently both headers display a symbol directly after the text.
+Change the layout so:
+
+* The **text label** stays in the **top-left corner** of the section.
+* The **symbol/icon moves to the opposite corner (top-right)** within the same header container.
+
+Example layout behavior:
+
+Top-left → section title (COURSES / TASK CONTENT)
+Top-right → the section symbol/icon
+
+Use flexbox or absolute positioning to align them properly.
+
+4. Ensure spacing and alignment remain consistent with the dark theme UI and do not break the existing layout grid.
+
+The goal is to make the sidebar icons visually match the interaction style of the Courses menu while improving header alignment for section symbols.

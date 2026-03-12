@@ -20,8 +20,8 @@ export class ContentWorkspace {
         const header = document.createElement('div');
         header.className = 'content-header';
         header.innerHTML = `
-            <h2>Task Content</h2>
-            <button title="More options">
+            <h2>TASK CONTENT</h2>
+            <button class="content-header-action" title="More options">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
             </button>
         `;

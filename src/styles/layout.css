@@ -72,6 +72,9 @@ body {
 .nav-header,
 .content-header,
 .inspector-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
@@ -84,11 +87,40 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--text-secondary);
+    flex: 1;
 }
 
 .content-header h2 {
     font-size: var(--font-size-lg);
     font-weight: 600;
+    flex: 1;
+}
+
+.nav-header-action,
+.content-header-action {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.nav-header-action:hover,
+.content-header-action:hover {
+    color: var(--text-primary);
+}
+
+.nav-header-action svg,
+.content-header-action svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
 }
 
 /* Content Body */
