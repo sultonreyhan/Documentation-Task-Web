@@ -1,6 +1,89 @@
 /* Reusable Component Styles */
 
-/* ===== ACTIVITY BAR ITEMS ===== */
+/* ===== ACTIVITY BAR STYLES ===== */
+
+.activity-bar {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    height: 100vh;
+    background-color: var(--bg-activity-bar, #1e1e1e);
+    border-right: 1px solid var(--border-color, #3c3c3c);
+    padding: 8px 0;
+    gap: 4px;
+    align-items: center;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.activity-bar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-fast, 0.2s);
+    padding: 0;
+}
+
+.activity-bar-button:hover {
+    background-color: var(--hover-highlight, #2a2d2e);
+}
+
+.activity-bar-button .activity-bar-icon {
+    width: 24px;
+    height: 24px;
+    color: #858585;
+    transition: color var(--transition-fast, 0.2s);
+    flex-shrink: 0;
+}
+
+.activity-bar-button:hover .activity-bar-icon {
+    color: var(--primary-text, #d4d4d4);
+}
+
+/* Active state - VSCode Activity Bar style */
+.activity-bar-button.active {
+    border-left-color: var(--accent-color, #569cd6);
+    background-color: rgba(86, 156, 214, 0.1);
+}
+
+.activity-bar-button.active .activity-bar-icon {
+    color: var(--accent-color, #569cd6);
+}
+
+.activity-bar-button:focus {
+    outline: none;
+}
+
+.activity-bar-button:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--accent-color, #569cd6);
+}
+
+/* Activity bar scrollbar */
+.activity-bar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.activity-bar::-webkit-scrollbar-track {
+    background-color: var(--bg-activity-bar, #1e1e1e);
+}
+
+.activity-bar::-webkit-scrollbar-thumb {
+    background-color: #464647;
+    border-radius: 3px;
+}
+
+.activity-bar::-webkit-scrollbar-thumb:hover {
+    background-color: #5a5a5a;
+}
+
+/* Legacy activity-item styles (for backward compatibility) */
 .activity-item {
     width: 36px;
     height: 36px;

@@ -341,3 +341,134 @@ Use flexbox or absolute positioning to align them properly.
 4. Ensure spacing and alignment remain consistent with the dark theme UI and do not break the existing layout grid.
 
 The goal is to make the sidebar icons visually match the interaction style of the Courses menu while improving header alignment for section symbols.
+
+## new prompt 1.3
+# AI Maintenance Prompts
+
+Dokumen ini berisi prompt untuk mengontrol agen AI agar tidak merusak arsitektur proyek.
+Project Rules:
+
+1. This project uses Vanilla JavaScript.
+2. Do not introduce React, Vue, or TypeScript.
+3. Do not create new root folders like client/ or components/.
+4. All UI modules must stay inside:
+
+src/ui/
+
+5. All logic modules must stay inside:
+
+src/core/
+
+### PROMPT 1 — Fix Activity Bar (Vanilla JS Only)
+
+Gunakan prompt ini untuk memperbaiki komponen Activity Bar tanpa mengubah struktur proyek.
+
+You are working inside an existing project.
+
+IMPORTANT RULE:
+You must NOT create new folders or new architectures.
+
+The project already has a working structure and you must modify ONLY the existing files.
+
+Existing structure that MUST be preserved:
+
+src/
+  core/
+  styles/
+  ui/
+    activity-bar.js
+    content-workspace.js
+    inspector-panel.js
+    navigation-panel.js
+    ui-controller.js
+  utils/
+  app.js
+  index.html
+
+DO NOT create:
+
+client/
+components/
+WorkspaceLayout.tsx
+React components
+TypeScript files
+
+The project is a VANILLA JS project.
+
+Goal:
+Improve the Activity Bar component while keeping the architecture unchanged.
+
+Files that may be edited:
+
+src/ui/activity-bar.js
+src/styles/components.css
+src/index.html
+
+Activity Bar requirements:
+
+1. Activity bar appears on the far left of the layout.
+2. Vertical icon layout similar to VSCode.
+3. Buttons must support:
+   - hover state
+   - active state
+4. Icons must use SVG (lucide-style icons already used in HTML).
+5. Activity bar must control navigation mode such as:
+   - courses
+   - search
+   - favorites
+   - settings
+
+Activity bar behavior:
+
+Clicking an icon should change the active state and notify the UI controller.
+
+The logic should remain compatible with:
+
+src/ui/ui-controller.js
+
+Do NOT change other modules.
+
+Output required:
+
+1. Updated src/ui/activity-bar.js
+2. Any small CSS additions if necessary
+3. No structural changes to the project.
+
+### PROMPT 2 — Remove Incorrect client/ Folder
+The project structure was modified incorrectly.
+
+A new folder was created:
+
+client/
+
+This folder must be removed because the project uses the original structure inside:
+
+src/
+
+Instructions:
+
+1. Delete the following folder completely:
+
+client/
+
+2. Restore the original project structure:
+
+src/
+  core/
+  styles/
+  ui/
+  utils/
+  app.js
+  index.html
+
+3. Ensure that all UI components continue to work using the existing files in src/.
+
+4. Do NOT introduce React, TypeScript, or new component folders.
+
+5. The project must remain a vanilla JavaScript web application.
+
+Output:
+
+- Updated project structure
+- Confirmation that the client/ folder was removed
+
