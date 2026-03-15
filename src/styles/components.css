@@ -38,9 +38,11 @@
 .activity-bar-button .activity-bar-icon {
     width: 24px;
     height: 24px;
-    color: #858585;
-    transition: color var(--transition-fast, 0.2s);
-    flex-shrink: 0;
+    display: block;
+    transition: all var(--transition-fast, 0.2s);
+    fill: currentColor;
+    stroke: none;
+    color: #a8a8a8;
 }
 
 .activity-bar-button:hover .activity-bar-icon {
@@ -63,6 +65,41 @@
 
 .activity-bar-button:focus-visible {
     box-shadow: inset 0 0 0 2px var(--accent-color, #569cd6);
+}
+
+/* SVG Icon Styling */
+.activity-bar-button .activity-bar-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    transition: all var(--transition-fast, 0.2s);
+    /* Override fill color with currentColor for theming */
+    fill: currentColor;
+    stroke: none;
+    color: #a8a8a8;
+}
+
+.activity-bar-button:hover .activity-bar-icon {
+    color: var(--primary-text, #d4d4d4);
+}
+
+.activity-bar-button.active .activity-bar-icon {
+    color: var(--accent-color, #569cd6);
+}
+
+/* Fallback placeholder for failed icon loads */
+.activity-bar-icon-error {
+    color: #a8a8a8;
+    font-size: 12px;
+    transition: color var(--transition-fast, 0.2s);
+}
+
+.activity-bar-button:hover .activity-bar-icon-error {
+    color: var(--primary-text, #d4d4d4);
+}
+
+.activity-bar-button.active .activity-bar-icon-error {
+    color: var(--accent-color, #569cd6);
 }
 
 /* Activity bar scrollbar */

@@ -7,33 +7,35 @@ import { ActivityBar } from './activity-bar.js';
 import { NavigationPanel } from './navigation-panel.js';
 import { ContentWorkspace } from './content-workspace.js';
 import { InspectorPanel } from './inspector-panel.js';
+import { DNNClassifier } from '../core/nn-classifier.js';
+import { CSVParser } from '../utils/csv-parser.js';
 import { FileHandler } from '../utils/file-handler.js';
 
 /**
  * Activity Bar Configuration
- * Define all activity items with icons and metadata
- * Icons must be defined separately from rendering logic
+ * Define all activity items with SVG file references
+ * Icons are loaded from pics/ folder with paths relative to index.html
  */
 const ACTIVITY_BAR_CONFIG = [
     {
         id: 'courses',
         label: 'Courses',
-        icon: '<svg class="activity-bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v2a2.5 2.5 0 0 1-2.5 2.5H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M6.5 2H20v15H6.5A2.5 2.5 0 0 1 4 14.5v-10A2.5 2.5 0 0 1 6.5 2z"/></svg>'
+        iconPath: '../pics/book.svg'
     },
     {
         id: 'search',
         label: 'Search',
-        icon: '<svg class="activity-bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>'
+        iconPath: '../pics/search.svg'
     },
     {
         id: 'favorites',
         label: 'Favorites',
-        icon: '<svg class="activity-bar-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'
+        iconPath: '../pics/star.svg'
     },
     {
         id: 'settings',
         label: 'Settings',
-        icon: '<svg class="activity-bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 10v4M4.22 4.22l2.83 2.83m8.72 0l2.83-2.83M1 12h4m10 0h4M4.22 19.78l2.83-2.83m8.72 0l2.83 2.83"/></svg>'
+        iconPath: '../pics/settings.svg'
     }
 ];
 
