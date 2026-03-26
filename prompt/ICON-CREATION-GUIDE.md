@@ -87,20 +87,6 @@ INSTRUKSI:
 - Warna: Monochrome (akan di-apply dengan CSS)
 ```
 
-### 2. Icon "Tasks" (Checklist) path : 'pics\checked.svg'
-```
-ICON: Tasks / Checklist
-FUNGSI: Menampilkan semua tugas/assignments
-KONSEP: Checkbox atau checklist dengan item-item
-STYLE: Flat outline icon, minimalist
-INSTRUKSI:
-- Buat icon kotak dengan checkmark di dalamnya
-- Tambahkan 1-2 garis di sebelah kanan (simbol list)
-- Stroke weight: 1.5px
-- ViewBox: 0 0 24 24
-- Pastikan checkmark terlihat jelas
-```
-
 ### 3. Icon "Search" (Pencarian) path : 'pics\search.svg'
 ```
 ICON: Search / Find
