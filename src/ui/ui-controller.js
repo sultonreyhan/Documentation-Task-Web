@@ -5,11 +5,15 @@
 
 import { ActivityBar } from './activity-bar.js';
 import { NavigationPanel } from './navigation-panel.js';
+import { NavigationPanelNew } from './navigation-panel-new.js';
 import { ContentWorkspace } from './content-workspace.js';
 import { InspectorPanel } from './inspector-panel.js';
 import { DNNClassifier } from '../core/nn-classifier.js';
 import { CSVParser } from '../utils/csv-parser.js';
 import { FileHandler } from '../utils/file-handler.js';
+import { StateManager } from './state-manager.js';
+import { initialState } from '../data/courses-data.js';
+import { getMeetingLabel } from '../utils/date-formatter.js';
 
 /**
  * Activity Bar Configuration
@@ -48,6 +52,8 @@ export class UIController {
             testData: null,
             activeActivityId: 'courses'
         };
+        // Initialize StateManager with initial data
+        this.stateManager = new StateManager(initialState);
     }
 
     /**
@@ -58,7 +64,7 @@ export class UIController {
         
         // Initialize components
         this.components.activityBar = new ActivityBar(workspace);
-        this.components.navPanel = new NavigationPanel(workspace);
+        this.components.navPanel = new NavigationPanelNew(workspace, this.stateManager);
         this.components.contentWorkspace = new ContentWorkspace(workspace);
         this.components.inspector = new InspectorPanel(workspace);
 
@@ -67,11 +73,14 @@ export class UIController {
             this._handleActivitySelect(activityId);
         });
 
-        // Setup navigation panel with sample courses
-        const courses = await this._loadCourses();
-        this.components.navPanel.init(courses, (task) => {
-            this._handleTaskSelect(task);
-        });
+        // Setup navigation panel with CRUD support
+        this.components.navPanel.onTaskSelect = (taskData) => {
+            this._handleTaskSelect(taskData);
+        };
+        this.components.navPanel.onCourseSelect = (course) => {
+            this._handleCourseSelect(course);
+        };
+        this.components.navPanel.init();
 
         // Initialize content workspace and inspector
         this.components.contentWorkspace.init();
@@ -81,146 +90,50 @@ export class UIController {
     }
 
     /**
-     * Load course and task data
-     * @private
-     * @returns {Promise<Array>} Courses data
-     */
-    async _loadCourses() {
-        return [
-            {
-                name: 'Introduction to ML',
-                tasks: [
-                    {
-                        id: 'task-1',
-                        name: 'Data Preprocessing',
-                        blocks: [
-                            { label: 'LEARNING GOAL', type: 'text', content: 'Understand data normalization and cleaning' }
-                        ],
-                        metadata: {
-                            course: 'Introduction to ML',
-                            meeting: 'Week 1',
-                            date: '2024-03-11',
-                            tags: 'preprocessing, data'
-                        }
-                    },
-                    {
-                        id: 'task-2',
-                        name: 'Model Training',
-                        blocks: [
-                            { label: 'GOAL', type: 'text', content: 'Train your first neural network' }
-                        ],
-                        metadata: {
-                            course: 'Introduction to ML',
-                            meeting: 'Week 2',
-                            date: '2024-03-18'
-                        }
-                    }
-                ]
-            },
-            {
-                name: 'Deep Learning',
-                tasks: [
-                    {
-                        id: 'task-3',
-                        name: 'CNN Basics',
-                        blocks: [
-                            { label: 'EXERCISE', type: 'text', content: 'Implement convolutional layers' }
-                        ],
-                        metadata: {
-                            course: 'Deep Learning',
-                            meeting: 'Week 5',
-                            date: '2024-05-01'
-                        }
-                    }
-                ]
-            }
-        ];
-    }
-
-    /**
-     * Handle activity bar selection
-     * @private
-     * @param {string} activityId - ID of selected activity
-     */
-    _handleActivitySelect(activityId) {
-        this.state.activeActivityId = activityId;
-        console.log('Activity selected:', activityId);
-        
-        // Handle different activity modes
-        switch (activityId) {
-            case 'courses':
-                this._showCoursesMode();
-                break;
-            case 'search':
-                this._showSearchMode();
-                break;
-            case 'favorites':
-                this._showFavoritesMode();
-                break;
-            case 'settings':
-                this._showSettingsMode();
-                break;
-        }
-    }
-
-    /**
-     * Show courses navigation mode
+     * Handle course selection
      * @private
      */
-    _showCoursesMode() {
-        // Show navigation panel with courses
-        console.log('Showing courses mode');
-    }
-
-    /**
-     * Show search mode
-     * @private
-     */
-    _showSearchMode() {
-        console.log('Showing search mode');
-    }
-
-    /**
-     * Show favorites mode
-     * @private
-     */
-    _showFavoritesMode() {
-        console.log('Showing favorites mode');
-    }
-
-    /**
-     * Show settings mode
-     * @private
-     */
-    _showSettingsMode() {
-        console.log('Showing settings mode');
+    _handleCourseSelect(course) {
+        console.log('Course selected:', course.title);
+        // Display course metadata
+        const metadata = {
+            course: course.title,
+            tasks: `${course.tasks.length} tasks`,
+            date: new Date().toLocaleDateString('id-ID')
+        };
+        this.components.inspector.displayMetadata(metadata);
     }
 
     /**
      * Handle task selection
      * @private
      */
-    _handleTaskSelect(task) {
+    _handleTaskSelect(taskData) {
+        console.log('Task selected:', taskData.task.title);
+        
+        // Create task object with blocks
+        const task = {
+            id: taskData.task.id,
+            name: taskData.task.title,
+            blocks: [
+                {
+                    label: 'CONTENT',
+                    type: 'text',
+                    content: 'This is content'
+                }
+            ],
+            metadata: {
+                course: taskData.course.title,
+                meeting: getMeetingLabel(taskData.taskIndex),
+                date: taskData.task.createdAt
+            }
+        };
+
+        // Display task content
         this.components.contentWorkspace.displayTask(task);
         
-        // Add action buttons to metadata
-        const metadata = {
-            ...task.metadata,
-            buttons: [
-                {
-                    label: 'Edit Task',
-                    className: '',
-                    onClick: () => alert('Edit functionality')
-                },
-                {
-                    label: 'Export as PDF',
-                    className: 'btn-secondary',
-                    onClick: () => this._exportTaskPDF(task)
-                }
-            ]
-        };
-        
-        this.components.inspector.displayMetadata(metadata);
+        // Display metadata (read-only for now)
+        this.components.inspector.displayMetadata(task.metadata);
     }
 
     /**
