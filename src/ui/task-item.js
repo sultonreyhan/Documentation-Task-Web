@@ -1,6 +1,7 @@
 /**
  * Task Item Component
  * Renders a single task within a course
+ * Clean navigation panel without type/emoji/metadata
  */
 
 import { getMeetingLabel } from '../utils/date-formatter.js';

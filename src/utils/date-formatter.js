@@ -1,14 +1,15 @@
 /**
  * Format dates for metadata display
+ * Returns format: YYYY-MM-DD
  */
-
 export function formatDate(date) {
     const dateObj = date instanceof Date ? date : new Date(date);
-    return dateObj.toLocaleDateString('id-ID', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    });
+    
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
 }
 
 /**

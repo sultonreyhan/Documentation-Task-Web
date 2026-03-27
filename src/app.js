@@ -4,6 +4,7 @@
  */
 
 import { UIController } from './ui/ui-controller.js';
+import { initStorage } from './core/storage.js';
 
 // Global application instance
 let app = null;
@@ -13,9 +14,13 @@ let app = null;
  */
 async function initializeApp() {
     try {
+        // Initialize storage (load from localStorage or use default)
+        const initialState = initStorage();
+        console.log('Storage initialized:', initialState);
+        
         app = new UIController();
-        await app.init();
-        console.log('Application initialized successfully');
+        await app.init(initialState);
+        console.log('✓ Application initialized successfully');
     } catch (error) {
         console.error('Application initialization failed:', error);
         alert('Failed to initialize application');

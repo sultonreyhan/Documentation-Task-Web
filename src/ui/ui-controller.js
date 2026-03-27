@@ -8,6 +8,7 @@ import { NavigationPanel } from './navigation-panel.js';
 import { NavigationPanelNew } from './navigation-panel-new.js';
 import { ContentWorkspace } from './content-workspace.js';
 import { InspectorPanel } from './inspector-panel.js';
+import { formatTaskMetadata, formatCourseMetadata } from '../utils/metadata-formatter.js';
 import { DNNClassifier } from '../core/nn-classifier.js';
 import { CSVParser } from '../utils/csv-parser.js';
 import { FileHandler } from '../utils/file-handler.js';
@@ -44,7 +45,7 @@ const ACTIVITY_BAR_CONFIG = [
 ];
 
 export class UIController {
-    constructor() {
+    constructor(initialStateParam = null) {
         this.classifier = new DNNClassifier();
         this.components = {};
         this.state = {
@@ -52,14 +53,21 @@ export class UIController {
             testData: null,
             activeActivityId: 'courses'
         };
-        // Initialize StateManager with initial data
-        this.stateManager = new StateManager(initialState);
+        // Initialize StateManager with initial data from storage or default
+        const stateToUse = initialStateParam || initialState;
+        this.stateManager = new StateManager(stateToUse);
     }
 
     /**
      * Initialize all UI components
+     * @param {Object} initialStateParam - optional initial state from app.js
      */
-    async init() {
+    async init(initialStateParam = null) {
+        // Update state if provided
+        if (initialStateParam) {
+            this.stateManager = new StateManager(initialStateParam);
+        }
+        
         const workspace = document.querySelector('.workspace');
         
         // Initialize components
@@ -95,12 +103,8 @@ export class UIController {
      */
     _handleCourseSelect(course) {
         console.log('Course selected:', course.title);
-        // Display course metadata
-        const metadata = {
-            course: course.title,
-            tasks: `${course.tasks.length} tasks`,
-            date: new Date().toLocaleDateString('id-ID')
-        };
+        // Display course metadata using formatter
+        const metadata = formatCourseMetadata(course, course.tasks.length);
         this.components.inspector.displayMetadata(metadata);
     }
 
@@ -121,19 +125,15 @@ export class UIController {
                     type: 'text',
                     content: 'This is content'
                 }
-            ],
-            metadata: {
-                course: taskData.course.title,
-                meeting: getMeetingLabel(taskData.taskIndex),
-                date: taskData.task.createdAt
-            }
+            ]
         };
 
         // Display task content
         this.components.contentWorkspace.displayTask(task);
         
-        // Display metadata (read-only for now)
-        this.components.inspector.displayMetadata(task.metadata);
+        // Display task metadata with formatted information (including type)
+        const taskMetadata = formatTaskMetadata(taskData.task);
+        this.components.inspector.displayMetadata(taskMetadata);
     }
 
     /**

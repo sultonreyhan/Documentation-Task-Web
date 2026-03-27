@@ -12,9 +12,6 @@
     border-left: 3px solid transparent;
 }
 
-.course-item:not(.add-course-item) {
-    /* Border-left removed - color only on selected */
-}
 
 .course-item.add-course-item {
     border-left: 3px solid #2563EB;
@@ -65,9 +62,6 @@
     background-color: rgba(0, 0, 0, 0.04);
 }
 
-.course-header:hover .expand-icon {
-    /* Removed color change - icon stays gray */
-}
 
 .course-name {
     flex: 1;
@@ -111,6 +105,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 13px;
+    min-height: 40px;
 }
 
 .task-item:not(.add-task-item) {
@@ -137,19 +132,27 @@
     flex: 1;
     display: flex;
     align-items: center;
+    min-width: 0;
+    /* Allow flex to shrink properly */
 }
 
 .task-name {
     color: var(--text-primary);
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Task Actions */
 .task-actions {
     display: flex;
     gap: var(--spacing-sm);
+    flex-shrink: 0;
+    /* Prevent shrinking of action buttons */
     opacity: 0;
     transition: opacity 0.2s ease;
+    margin-left: var(--spacing-sm);
 }
 
 .task-item:hover .task-actions {

@@ -1,0 +1,147 @@
+/**
+ * Task Type System Styles
+ * Styling for task results and metadata display in inspector panel
+ * Navigation panel is kept clean (no badges/emoji)
+ */
+
+/* Task Renderer Styles (Inspector Panel) */
+.task-renderer {
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+}
+
+.task-renderer.dnn-renderer {
+    border-left: 4px solid #667eea;
+}
+
+.task-renderer.color-renderer {
+    border-left: 4px solid #f093fb;
+}
+
+/* Result Display */
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.result-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.result-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    background: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.confidence {
+    background: #fff3cd;
+    color: #856404;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* Task Status */
+.task-status {
+    color: #999;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* Config Info */
+.config-info {
+    color: #666;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+/* Predictions Grid */
+.predictions {
+    margin: 10px 0;
+}
+
+.predictions-header {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+.predictions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 8px;
+}
+
+.prediction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    background: white;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+}
+
+.class-label {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.prob-value {
+    color: #666;
+}
+
+/* Color Details */
+.color-swatch {
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.color-details {
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.color-details p {
+    margin: 4px 0;
+}
+
+.color-details code {
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: #d63384;
+}
+
+/* Executed At */
+.executed-at {
+    font-size: 11px;
+    color: #999;
+    margin-top: 8px;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .predictions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+}
