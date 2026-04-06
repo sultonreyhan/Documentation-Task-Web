@@ -11,30 +11,31 @@ const STORAGE_KEY = 'crud-course-manager-state';
 export const DEFAULT_STATE = {
     courses: [
         {
-            id: 'course-default-1',
-            title: 'Sample Course',
+            id: 'course-1',
+            title: 'Introduction to JavaScript',
             expanded: true,
             tasks: [
                 {
-                    id: 'task-default-1',
-                    title: 'Sample Task - DNN Classifier',
-                    type: 'dnn-classifier',
-                    config: {
-                        inputSize: 784,
-                        outputSize: 10
-                    },
-                    result: null,
-                    createdAt: new Date().toISOString()
+                    id: 'task-1',
+                    title: 'Getting Started',
+                    createdAt: '01/01/2024'
                 },
                 {
-                    id: 'task-default-2',
-                    title: 'Sample Task - Color Classifier',
-                    type: 'color-classifier',
-                    config: {
-                        colorMode: 'RGB'
-                    },
-                    result: null,
-                    createdAt: new Date().toISOString()
+                    id: 'task-2',
+                    title: 'Basic Concepts',
+                    createdAt: '01/02/2024'
+                }
+            ]
+        },
+        {
+            id: 'course-2',
+            title: 'Web Development Basics',
+            expanded: true,
+            tasks: [
+                {
+                    id: 'task-3',
+                    title: 'HTML & CSS',
+                    createdAt: '01/03/2024'
                 }
             ]
         }

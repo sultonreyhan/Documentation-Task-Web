@@ -7,7 +7,6 @@
 import { generateId } from '../utils/id-generator.js';
 import { formatDate } from '../utils/date-formatter.js';
 import { saveToStorage } from '../core/storage.js';
-import { executeTask as runTask } from '../registry/task-registry.js';
 
 export class StateManager {
     constructor(initialState) {

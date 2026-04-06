@@ -65,9 +65,13 @@
 
 .course-name {
     flex: 1;
+    min-width: 0;
     font-weight: 600;
     color: var(--text-primary);
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Course Actions */
@@ -76,6 +80,8 @@
     gap: var(--spacing-sm);
     opacity: 0;
     transition: opacity 0.2s ease;
+    flex-shrink: 0;
+    margin-left: var(--spacing-sm);
 }
 
 .course-item:hover .course-actions {

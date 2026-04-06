@@ -3,7 +3,6 @@
  * Formats task information for display in metadata panel
  */
 
-import { getTaskType, typeExists } from '../registry/task-registry.js';
 import { formatDate } from './date-formatter.js';
 
 /**
@@ -26,12 +25,7 @@ export function formatTaskMetadata(task) {
     
     // Task Type
     if (task.type) {
-        if (typeExists(task.type)) {
-            const taskType = getTaskType(task.type);
-            metadata['Type'] = taskType.name;
-        } else {
-            metadata['Type'] = `Unknown (${task.type})`;
-        }
+        metadata['Type'] = task.type;
     }
     
     // Created Date

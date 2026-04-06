@@ -6,30 +6,30 @@ export const initialState = {
     courses: [
         {
             id: 'course-1',
-            title: 'Introduction to ML',
+            title: 'Introduction to JavaScript',
             expanded: true,
             tasks: [
                 {
                     id: 'task-1',
-                    title: 'Data Preprocessing',
-                    createdAt: '11/03/2024'
+                    title: 'Getting Started',
+                    createdAt: '01/01/2024'
                 },
                 {
                     id: 'task-2',
-                    title: 'Model Training',
-                    createdAt: '12/03/2024'
+                    title: 'Basic Concepts',
+                    createdAt: '01/02/2024'
                 }
             ]
         },
         {
             id: 'course-2',
-            title: 'Deep Learning',
+            title: 'Web Development Basics',
             expanded: true,
             tasks: [
                 {
                     id: 'task-3',
-                    title: 'CNN Basics',
-                    createdAt: '15/03/2024'
+                    title: 'HTML & CSS',
+                    createdAt: '01/03/2024'
                 }
             ]
         }
